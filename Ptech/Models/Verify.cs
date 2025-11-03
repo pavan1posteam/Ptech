@@ -13,6 +13,7 @@ namespace Ptech.Models
         private readonly DataRow _row;
 
         private readonly int _storeId;
+        public Verify() { }
         public Verify(DataRow row, int storeId)
         {
             _storeId = storeId;

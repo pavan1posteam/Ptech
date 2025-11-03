@@ -21,7 +21,6 @@ namespace PTech
                 {
                     try
                     {
-                        if(current.StoreSettings.StoreId == 12381) { } else { continue; }
                         if (current.PosName.ToUpper() == "PTECH")
                         {
                             Console.WriteLine("StoreId: " + current.StoreSettings.StoreId);
@@ -47,14 +46,14 @@ namespace PTech
                             SypramSoftware clsSypram = new SypramSoftware(current.StoreSettings.StoreId, current.StoreSettings.POSSettings.tax, current.StoreSettings.POSSettings.BaseUrl, current.StoreSettings.POSSettings.Username, current.StoreSettings.POSSettings.Password, current.StoreSettings.POSSettings.Pin, current.StoreSettings.POSSettings.IsMarkUpPrice, current.StoreSettings.POSSettings.MarkUpValue);
                             Console.WriteLine();
                         }
-                        //else if (current.PosName.ToUpper() == "TOAST")//Checked on 03/11/2025 1:22pm
-                        //{
-                        //    Console.WriteLine("StoreId: " + current.StoreSettings.StoreId);
-                        //    clsToast toast = new clsToast(current.StoreSettings.StoreId, current.StoreSettings.POSSettings.tax, current.StoreSettings.POSSettings.BaseUrl, current.StoreSettings.POSSettings.ClientId, current.StoreSettings.POSSettings.ClientSecret, current.StoreSettings.POSSettings.Type, current.StoreSettings.POSSettings.GUID, current.StoreSettings.POSSettings.Loyalty);
-                        //    string status = toast.run();
-                        //    Console.WriteLine(status);
-                        //}
-                        else if (current.StoreSettings.StoreId == 12381)
+                        else if (current.PosName.ToUpper() == "TOAST")
+                        {
+                            Console.WriteLine("StoreId: " + current.StoreSettings.StoreId);
+                            clsToast toast = new clsToast(current.StoreSettings.StoreId, current.StoreSettings.POSSettings.tax, current.StoreSettings.POSSettings.BaseUrl, current.StoreSettings.POSSettings.ClientId, current.StoreSettings.POSSettings.ClientSecret, current.StoreSettings.POSSettings.Type, current.StoreSettings.POSSettings.GUID, current.StoreSettings.POSSettings.Loyalty);
+                            string status = toast.run();
+                            Console.WriteLine(status);
+                        }
+                        else if (current.PosName.ToUpper() == "Scotch")//PK
                         {
                             Console.WriteLine("StoreId: " + current.StoreSettings.StoreId);
                             Scotch s = new Scotch(12381, 0, "https://app.scotchpos.com", "0199168b-47ad-7882-83ff-8b30cd9aab52", "sctchps_prd_56c2868cf65b6beb171618d4c700c2cd");

@@ -46,7 +46,7 @@ namespace PTech
                             SypramSoftware clsSypram = new SypramSoftware(current.StoreSettings.StoreId, current.StoreSettings.POSSettings.tax, current.StoreSettings.POSSettings.BaseUrl, current.StoreSettings.POSSettings.Username, current.StoreSettings.POSSettings.Password, current.StoreSettings.POSSettings.Pin, current.StoreSettings.POSSettings.IsMarkUpPrice, current.StoreSettings.POSSettings.MarkUpValue);
                             Console.WriteLine();
                         }
-                        else if (current.PosName.ToUpper() == "TOAST")//Checked on 03/11/2025
+                        else if (current.PosName.ToUpper() == "TOAST")//Checked on 03/11/2025 1:22pm
                         {
                             Console.WriteLine("StoreId: " + current.StoreSettings.StoreId);
                             clsToast toast = new clsToast(current.StoreSettings.StoreId, current.StoreSettings.POSSettings.tax, current.StoreSettings.POSSettings.BaseUrl, current.StoreSettings.POSSettings.ClientId, current.StoreSettings.POSSettings.ClientSecret, current.StoreSettings.POSSettings.Type, current.StoreSettings.POSSettings.GUID, current.StoreSettings.POSSettings.Loyalty);

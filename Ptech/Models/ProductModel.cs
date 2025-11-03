@@ -27,6 +27,6 @@ namespace PTech.Models
         public string altupc4 { get; set; }
         public string altupc5 { get; set; }
         public int Discountable { get; set; }
-
+        public string Vintage { get; set; }
     }
 }

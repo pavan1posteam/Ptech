@@ -83,7 +83,9 @@ namespace PTech.Models
         public string Token { get; set; }
         public string merchantId { get; set; }
         public string Username { get; set; }
+        public string Username2 { get; set; }
         public string Password { get; set; }
+        public string Password2 { get; set; }
         public string Pin { get; set; }
         public int SHOPID { get; set; }
         public string Code { get; set; }
@@ -108,6 +110,9 @@ namespace PTech.Models
         public decimal beertax { get; set; }
         public decimal winetax { get; set; }
         public int client_id { get; set; }
+        public string Type { get; set; }
+        public string GUID { get; set; }
+        public bool Loyalty { get; set; }
     }
     public class categories
     {

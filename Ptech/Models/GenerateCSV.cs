@@ -99,6 +99,7 @@ namespace PTech.Models
                 //this is the header row
                 foreach (PropertyInfo pi in props)
                 {
+                    if (pi.Name == "EnvironmentalFee" && StoreId != 11873) continue;
                     sw.Write(pi.Name + ",");
                 }
                 sw.Write(newLine);
@@ -109,12 +110,13 @@ namespace PTech.Models
                     //this acts as datacolumn
                     foreach (PropertyInfo pi in props)
                     {
+                        if (pi.Name == "EnvironmentalFee" && StoreId != 11873) continue;
                         //this is the row+col intersection (the value)
                         string whatToWrite =
                             Convert.ToString(item.GetType()
                                                  .GetProperty(pi.Name)
                                                  .GetValue(item, null))
-                                .Replace(',', ' ') + ',';
+                                                 .Replace(',', ' ') + ',';
 
                         sw.Write(whatToWrite);
 
@@ -125,75 +127,75 @@ namespace PTech.Models
             }
         }
 
-        public static string GenerateCSVFile(List<ProductModel> list, string Name, int StoreId, string BaseUrl)
-        {
-            StringBuilder csvData = null;
-            try
-            {
-                csvData = new StringBuilder();
-                //Get the properties for type T for the headers
-                PropertyInfo[] propInfos = typeof(ProductModel).GetProperties();
-                for (int i = 0; i <= propInfos.Length - 1; i++)
-                {
-                    csvData.Append(propInfos[i].Name);
-                    if (i < propInfos.Length - 1)
-                    {
-                        csvData.Append(",");
-                    }
-                }
-                csvData.AppendLine();
+        //public static string GenerateCSVFile(List<ProductModel> list, string Name, int StoreId, string BaseUrl)
+        //{
+        //    StringBuilder csvData = null;
+        //    try
+        //    {
+        //        csvData = new StringBuilder();
+        //        //Get the properties for type T for the headers
+        //        PropertyInfo[] propInfos = typeof(ProductModel).GetProperties();
+        //        for (int i = 0; i <= propInfos.Length - 1; i++)
+        //        {
+        //            csvData.Append(propInfos[i].Name);
+        //            if (i < propInfos.Length - 1)
+        //            {
+        //                csvData.Append(",");
+        //            }
+        //        }
+        //        csvData.AppendLine();
 
-                //Loop through the collection, then the properties and add the values
-                for (int i = 0; i <= list.Count - 1; i++)
-                {
-                    ProductModel item = list[i];
-                    for (int j = 0; j <= propInfos.Length - 1; j++)
-                    {
-                        object csvProperty = item.GetType().GetProperty(propInfos[j].Name).GetValue(item, null);
-                        if (csvProperty != null)
-                        {
-                            string value = csvProperty.ToString();
-                            //Check if the value contans a comma and place it in quotes if so
-                            //if (value.Contains(","))
-                            //{
-                            //    value = string.Concat("\"", value, "\"");
-                            //}
-                            ////Replace any \r or \n special characters from a new line with a space
-                            //if (value.Contains("\r"))
-                            //{
-                            //    value = value.Replace("\r", " ");
-                            //}
-                            //if (value.Contains("\n"))
-                            //{
-                            //    value = value.Replace("\n", " ");
-                            //}
+        //        //Loop through the collection, then the properties and add the values
+        //        for (int i = 0; i <= list.Count - 1; i++)
+        //        {
+        //            ProductModel item = list[i];
+        //            for (int j = 0; j <= propInfos.Length - 1; j++)
+        //            {
+        //                object csvProperty = item.GetType().GetProperty(propInfos[j].Name).GetValue(item, null);
+        //                if (csvProperty != null)
+        //                {
+        //                    string value = csvProperty.ToString();
+        //                    //Check if the value contans a comma and place it in quotes if so
+        //                    //if (value.Contains(","))
+        //                    //{
+        //                    //    value = string.Concat("\"", value, "\"");
+        //                    //}
+        //                    ////Replace any \r or \n special characters from a new line with a space
+        //                    //if (value.Contains("\r"))
+        //                    //{
+        //                    //    value = value.Replace("\r", " ");
+        //                    //}
+        //                    //if (value.Contains("\n"))
+        //                    //{
+        //                    //    value = value.Replace("\n", " ");
+        //                    //}
 
-                            value = '"' + value.Replace("\"", "\"\"") + '"';
+        //                    value = '"' + value.Replace("\"", "\"\"") + '"';
 
-                            csvData.Append(value);
-                        }
-                        if (j < propInfos.Length - 1)
-                        {
-                            csvData.Append(",");
-                        }
-                    }
-                    csvData.AppendLine();
-                }
+        //                    csvData.Append(value);
+        //                }
+        //                if (j < propInfos.Length - 1)
+        //                {
+        //                    csvData.Append(",");
+        //                }
+        //            }
+        //            csvData.AppendLine();
+        //        }
 
-                if (!Directory.Exists(BaseUrl + "\\" + StoreId + "\\Upload\\"))
-                {
-                    Directory.CreateDirectory(BaseUrl + "\\" + StoreId + "\\Upload\\");
-                }
-                string filename = Name + StoreId + DateTime.Now.ToString("yyyyMMddhhmmss") + ".csv";
-                File.WriteAllText(BaseUrl + "\\" + StoreId + "\\Upload\\" + filename, csvData.ToString());
-                return filename;
-            }
-            catch (Exception ex)
-            {
-                return ex.ToString();
-                // Do something
-            }
-        }
+        //        if (!Directory.Exists(BaseUrl + "\\" + StoreId + "\\Upload\\"))
+        //        {
+        //            Directory.CreateDirectory(BaseUrl + "\\" + StoreId + "\\Upload\\");
+        //        }
+        //        string filename = Name + StoreId + DateTime.Now.ToString("yyyyMMddhhmmss") + ".csv";
+        //        File.WriteAllText(BaseUrl + "\\" + StoreId + "\\Upload\\" + filename, csvData.ToString());
+        //        return filename;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ex.ToString();
+        //        // Do something
+        //    }
+        //}
 
         public static string GenerateCSVFile(List<ProductModelEcrs> list, string Name, int StoreId, string BaseUrl)
         {

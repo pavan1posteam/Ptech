@@ -4,16 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PTech.Models
+namespace Ptech.Models
 {
-    class ProductModel
+    public class datatableModel
     {
         public int StoreID { get; set; }
         public string upc { get; set; }
         public decimal Qty { get; set; }
         public string sku { get; set; }
-        public int pack { get; set; }
+        public string pack { get; set; }
         public string uom { get; set; }
+        public string pcat { get; set; }
+        public string pcat1 { get; set; }
+        public string pcat2 { get; set; }
+        public string country { get; set; }
+        public string region { get; set; }
         public string StoreProductName { get; set; }
         public string StoreDescription { get; set; }
         public decimal Price { get; set; }
@@ -26,7 +31,6 @@ namespace PTech.Models
         public string altupc3 { get; set; }
         public string altupc4 { get; set; }
         public string altupc5 { get; set; }
-        public int Discountable { get; set; }
-
+        public decimal Cost { get; set; }
     }
 }

@@ -21,6 +21,9 @@ namespace PTech
                 {
                     try
                     {
+                        if (current.StoreSettings.StoreId == 12699)
+                        { }
+                        else { continue; }
                         if (current.PosName.ToUpper() == "PTECH")
                         {
                             Console.WriteLine("StoreId: " + current.StoreSettings.StoreId);
@@ -59,6 +62,13 @@ namespace PTech
                             Scotch s = new Scotch(12381, 0, "https://app.scotchpos.com", "0199168b-47ad-7882-83ff-8b30cd9aab52", "sctchps_prd_56c2868cf65b6beb171618d4c700c2cd");
                             s.RunAsync().GetAwaiter().GetResult();
                         }
+                        else if (current.PosName.ToUpper() == "SHOPIFY")
+                        {
+                            Console.WriteLine("StoreId: " + current.StoreSettings.StoreId);
+                            Shopifypos.Shopify shopify = new Shopifypos.Shopify(current.StoreSettings.StoreId, current.StoreSettings.POSSettings.tax, current.StoreSettings.POSSettings.BaseUrl, current.StoreSettings.POSSettings.accessToken);
+                            Console.WriteLine();
+                        }
+
                     }
                     catch (Exception ex)
                     {

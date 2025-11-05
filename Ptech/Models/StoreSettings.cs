@@ -113,6 +113,7 @@ namespace PTech.Models
         public string Type { get; set; }
         public string GUID { get; set; }
         public bool Loyalty { get; set; }
+        public string accessToken { get; set; }   // added for shopify store 
     }
     public class categories
     {

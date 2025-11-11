@@ -21,7 +21,7 @@ namespace PTech
                 {
                     try
                     {
-                        if (current.StoreSettings.StoreId == 0000) 
+                        if (current.StoreSettings.StoreId == 12777)   // checking in local 
                         { }
                         else { continue; }
                         if (current.PosName.ToUpper() == "PTECH")

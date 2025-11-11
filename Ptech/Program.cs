@@ -21,7 +21,7 @@ namespace PTech
                 {
                     try
                     {
-                        if (current.StoreSettings.StoreId == 12777)
+                        if (current.StoreSettings.StoreId == 00000) // is this changed nithin
                         { }
                         else { continue; }
                         if (current.PosName.ToUpper() == "PTECH")

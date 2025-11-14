@@ -46,15 +46,20 @@ namespace Ptech
                     var variant = item.variants?.FirstOrDefault();
                     if (variant != null)
                     {
-                        pdf.upc = variant.barcode;
-                        pdf.sku = pdf.upc;
+                          pdf.upc = variant.barcode;
+                        if (string.IsNullOrEmpty(pdf.upc))
+                        {
+                            pdf.upc = variant.product_id.ToString();
+                        }
+                        pdf.sku = variant.product_id.ToString() ;    // using product id as sku
                         pdf.Qty = variant.inventory_quantity;
                         pdf.Price = Convert.ToDecimal(variant.price);
 
                     }
                     else
                     {
-                        pdf.upc = "";
+                        pdf.upc = item.id.ToString() ;    // if variants is null then fall back to top level id
+                        pdf.sku = item.id.ToString() ;   
                         pdf.Qty = 0;
                         pdf.Price = 0;
                     }
@@ -166,8 +171,10 @@ namespace Ptech
             public string price { get; set; }
             public string barcode { get; set; }    //UPC 
 
-            //    public long id { get; set; }     // no idea 
-            //   public long product_id { get; set; }   // no idea 
+            public long product_id { get; set; }   // alternative for upc and sku 
+
+            //    public long id { get; set; }    // not required  
+
             //   public string title { get; set; }   
 
             //    public int position { get; set; }
@@ -227,8 +234,8 @@ namespace Ptech
             public List<Variant> variants { get; set; }   // imp for reading 
             public string product_type { get; set; }    // category wine,vodka   
 
+            public long id { get; set; }   // this is also product_id (if variants null use this)
 
-            //    public long id { get; set; }
             //    public string body_html { get; set; }
             //   public string vendor { get; set; }
             //  public DateTime created_at { get; set; }
